@@ -13,9 +13,9 @@ def from_data_file(filename):
 
 try:
     ALL_LAYERS = {
-        "Bike Rentals": pdk.Layer(
-            "HexagonLayer",
-            data=from_data_file("bike_rental_stats.json"),
+        "": pdk.Layer(
+            "",
+            data=from_data_file(".json"),
             get_position=["lon", "lat"],
             radius=200,
             elevation_scale=4,
