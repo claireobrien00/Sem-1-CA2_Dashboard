@@ -1,50 +1,85 @@
 import streamlit as st
-import pydeck as pdk
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-import numpy as np
+# Title of the app
+st.title('Data Visualization Dashboard')
 
-# Set the title of the app
-st.title('Sample Dashboard')
+# Instructions for the user
+st.write("""
+This dashboard allows you to explore the data and visualize different aspects of it.
+""")
 
-# Create some sample data
+# Function to load data from GitHub
 @st.cache
 def load_data():
-    np.random.seed(42)
-    dates = pd.date_range('2023-01-01', periods=100)
-    data = pd.DataFrame(np.random.randn(100, 4), index=dates, columns=['A', 'B', 'C', 'D'])
+    url = 'https://raw.githubusercontent.com/yourusername/yourrepository/main/yourdatafile.csv'
+    data = pd.read_csv(url)
     return data
 
-data = load_data()
+# Load the data
+df = load_data()
 
-# Display the data as a table
-st.header('Data Table')
-st.dataframe(data)
+# Display the raw data
+st.header('Raw Data')
+st.dataframe(df)
 
-# Line chart
-st.header('Line Chart')
-st.line_chart(data)
+# Select a subset of the data
+st.header('Data Analysis')
+st.write("Select columns to visualize")
+
+columns = st.multiselect("Select columns", df.columns)
+
+if columns:
+    st.write(df[columns])
+
+    # Correlation matrix
+    st.subheader('Correlation Matrix')
+    correlation_matrix = df[columns].corr()
+    st.write(correlation_matrix)
+    fig, ax = plt.subplots()
+    sns.heatmap(correlation_matrix, annot=True, ax=ax)
+    st.pyplot(fig)
+
+    # Pairplot
+    st.subheader('Pairplot')
+    pairplot = sns.pairplot(df[columns])
+    st.pyplot(pairplot)
 
 # Bar chart
 st.header('Bar Chart')
-st.bar_chart(data)
+selected_column = st.selectbox("Select column for bar chart", df.columns)
+if selected_column:
+    bar_data = df[selected_column].value_counts()
+    st.bar_chart(bar_data)
 
-# Add a slider to filter the data
-st.header('Data Filter')
-date_slider = st.slider('Select a date range', min_value=data.index.min(), max_value=data.index.max(), value=(data.index.min(), data.index.max()))
-filtered_data = data.loc[date_slider[0]:date_slider[1]]
+# Line chart
+st.header('Line Chart')
+selected_line_columns = st.multiselect("Select columns for line chart", df.columns)
+if selected_line_columns:
+    st.line_chart(df[selected_line_columns])
 
-# Display filtered data
-st.subheader('Filtered Data Table')
-st.dataframe(filtered_data)
+# Area chart
+st.header('Area Chart')
+selected_area_columns = st.multiselect("Select columns for area chart", df.columns, default=df.columns[:2])
+if selected_area_columns:
+    st.area_chart(df[selected_area_columns])
 
-# Display filtered data in a line chart
-st.subheader('Filtered Data Line Chart')
-st.line_chart(filtered_data)
+# Custom plot with Matplotlib/Seaborn
+st.header('Custom Plot')
+custom_plot_column = st.selectbox("Select column for custom plot", df.columns)
+if custom_plot_column:
+    fig, ax = plt.subplots()
+    sns.histplot(df[custom_plot_column], bins=30, kde=True, ax=ax)
+    st.pyplot(fig)
 
-# Display filtered data in a bar chart
-st.subheader('Filtered Data Bar Chart')
-st.bar_chart(filtered_data)
+# Instructions to run the app
+st.write("To run this app, use the command: `streamlit run dashboard.py`")
+
+# Additional information
+st.write("For more information, visit the [Streamlit documentation](https://docs.streamlit.io/).")
+
 
 # @st.cache
 # def from_data_file(filename):
