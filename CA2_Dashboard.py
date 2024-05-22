@@ -14,7 +14,7 @@ This dashboard allows you to explore the data and visualize different aspects of
 # Function to load data from GitHub
 @st.cache
 def load_data():
-    url = 'https://raw.githubusercontent.com/yourusername/yourrepository/main/yourdatafile.csv'
+    url = 'https://raw.githubusercontent.com/yourusername/yourrepository/main/CA2_Dashboard.csv'
     data = pd.read_csv(url)
     return data
 
