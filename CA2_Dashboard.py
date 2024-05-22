@@ -61,10 +61,10 @@ if selected_line_columns:
     st.line_chart(df[selected_line_columns])
 
 # Area chart
-st.header('Area Chart')
-selected_area_columns = st.multiselect("Select columns for area chart", df.columns, default=df.columns[:2])
-if selected_area_columns:
-    st.area_chart(df[selected_area_columns])
+# st.header('Area Chart')
+# selected_area_columns = st.multiselect("Select columns for area chart", df.columns, default=df.columns[:2])
+# if selected_area_columns:
+#     st.area_chart(df[selected_area_columns])
 
 # Custom plot with Matplotlib/Seaborn
 st.header('Custom Plot')
