@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-# import seaborn as sns
+import seaborn as sns
 
 # Title of the app
 st.title('Data Visualization Dashboard')
