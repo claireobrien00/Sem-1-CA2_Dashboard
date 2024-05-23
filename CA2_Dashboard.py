@@ -14,7 +14,7 @@ This dashboard allows you to explore the data and visualize different aspects of
 # Function to load data from GitHub
 @st.cache
 def load_data():
-    url = 'https://raw.githubusercontent.com/claireobrien00/CA2_Dashboard/main/CA2_Dashboard.csv'
+    url = 'https://raw.githubusercontent.com/claireobrien00/CA2_Dashboard/main/CA2_Dashboard_Livestock.csv'
     data = pd.read_csv(url)
     return data
 
@@ -25,36 +25,23 @@ df = load_data()
 st.header('Raw Data')
 st.dataframe(df)
 
-# Streamlit app
-st.title('Map Visualization')
+# Create choropleth map
+fig = px.choropleth(df_eu_livestock_country,
+                    locations="Alpha-3 code", 
+                    color="Total Livestock", 
+                    hover_name="Country",
+                    animation_frame="Year",
+                    color_continuous_scale=px.colors.sequential.Plasma,
+                    projection='natural earth',
+                    range_color=(0, 70000)
+                   )
 
-# Sidebar for user input
-selected_column = st.sidebar.selectbox('Select the column containing country codes:', options=df.columns)
-value_column = st.sidebar.selectbox('Select the column containing values:', options=df.columns)
+# Update layout
+fig.update_layout(
+    title_text="Total Livestock in European Countries",
+    geo_scope="world",
+    geo=dict(projection_type="natural earth")
+)
 
-# Display sample DataFrame
-st.write(df)
-
-# Function to generate map
-def generate_map(df, selected_column, value_column):
-    # Create a Deck.GL layer
-    layer = pdk.Layer(
-        'ScatterplotLayer',
-        data=df,
-        get_position='[lng, lat]',
-        get_radius=20000,
-        get_fill_color='[255, 0, 0]',
-        pickable=True
-    )
-
-    # Set the viewport location
-    view_state = pdk.ViewState(latitude=0, longitude=0, zoom=1)
-
-    # Create the Deck.GL map
-    map_ = pdk.Deck(layers=[layer], initial_view_state=view_state)
-
-    # Display the map
-    st.pydeck_chart(map_)
-
-# Plot the map
-generate_map(df, selected_column, value_column)
+# Display the figure in Streamlit
+st.plotly_chart(fig)
