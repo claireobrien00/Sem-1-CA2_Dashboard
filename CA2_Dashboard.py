@@ -67,11 +67,11 @@ def generate_map(df, color_column):
 st.title('Map Visualization')
 
 # Sidebar for user input
-color_column = st.sidebar.selectbox('Select the column containing values:', options=df_eu_livestock_country.columns)
+color_column = st.sidebar.selectbox('Select the column containing values:', options=df.columns)
 
 # Display sample DataFrame
-st.write(df_eu_livestock_country)
+st.write(df)
 
 # Plot the map
-map_ = generate_map(df_eu_livestock_country, color_column)
+map_ = generate_map(df, color_column)
 st.pydeck_chart(map_)
