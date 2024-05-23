@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import pydeck as pdk
 
 
 # Title of the app
@@ -24,7 +25,20 @@ df = load_data()
 st.header('Raw Data')
 st.dataframe(df)
 
-# Select a subset of the data
-st.header('Data Analysis')
-st.write("Select columns to visualize")
+layer = pdk.Layer(
+    'ScatterplotLayer',
+    data=df,
+    get_position='[0, 0]',
+    get_radius=10000,
+    get_fill_color='[255, 0, 0]',
+    pickable=True
+)
 
+# Set the viewport location
+view_state = pdk.ViewState(latitude=0, longitude=0, zoom=1)
+
+# Create the Deck.GL map
+map_ = pdk.Deck(layers=[layer], initial_view_state=view_state)
+
+# Display the map
+st.pydeck_chart(map_)
