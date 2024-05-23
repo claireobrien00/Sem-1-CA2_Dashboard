@@ -25,20 +25,36 @@ df = load_data()
 st.header('Raw Data')
 st.dataframe(df)
 
-layer = pdk.Layer(
-    'ScatterplotLayer',
-    data=df,
-    get_position='[0, 0]',
-    get_radius=10000,
-    get_fill_color='[255, 0, 0]',
-    pickable=True
-)
+# Streamlit app
+st.title('Map Visualization')
 
-# Set the viewport location
-view_state = pdk.ViewState(latitude=0, longitude=0, zoom=1)
+# Sidebar for user input
+selected_column = st.sidebar.selectbox('Select the column containing country codes:', options=df.columns)
+value_column = st.sidebar.selectbox('Select the column containing values:', options=df.columns)
 
-# Create the Deck.GL map
-map_ = pdk.Deck(layers=[layer], initial_view_state=view_state)
+# Display sample DataFrame
+st.write(df)
 
-# Display the map
-st.pydeck_chart(map_)
+# Function to generate map
+def generate_map(df, selected_column, value_column):
+    # Create a Deck.GL layer
+    layer = pdk.Layer(
+        'ScatterplotLayer',
+        data=df,
+        get_position='[lng, lat]',
+        get_radius=20000,
+        get_fill_color='[255, 0, 0]',
+        pickable=True
+    )
+
+    # Set the viewport location
+    view_state = pdk.ViewState(latitude=0, longitude=0, zoom=1)
+
+    # Create the Deck.GL map
+    map_ = pdk.Deck(layers=[layer], initial_view_state=view_state)
+
+    # Display the map
+    st.pydeck_chart(map_)
+
+# Plot the map
+generate_map(df, selected_column, value_column)
