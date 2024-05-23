@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pydeck as pdk
-import plotly.express as px
+#import plotly.express as px
 
 
 # Title of the app
