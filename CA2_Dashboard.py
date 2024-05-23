@@ -26,23 +26,52 @@ df = load_data()
 st.header('Raw Data')
 st.dataframe(df)
 
-# Create choropleth map
-fig = px.choropleth(df_eu_livestock_country,
-                    locations="Alpha-3 code", 
-                    color="Total Livestock", 
-                    hover_name="Country",
-                    animation_frame="Year",
-                    color_continuous_scale=px.colors.sequential.Plasma,
-                    projection='natural earth',
-                    range_color=(0, 70000)
-                   )
+# Function to generate choropleth layer
+def generate_choropleth_layer(df, color_column):
+    # Create a pydeck GeoJSON layer
+    choropleth_layer = pdk.Layer(
+        'GeoJsonLayer',
+        data=df,
+        opacity=0.8,
+        get_fill_color='[255, color_value, 0]',
+        stroked=False,
+        get_line_color=[255, 255, 255],
+        lineWidthMinPixels=1,
+        pickable=True
+    )
 
-# Update layout
-fig.update_layout(
-    title_text="Total Livestock in European Countries",
-    geo_scope="world",
-    geo=dict(projection_type="natural earth")
-)
+    return choropleth_layer
 
-# Display the figure in Streamlit
-st.plotly_chart(fig)
+# Function to generate map
+def generate_map(df, color_column):
+    # Set the center of the map
+    center = [0, 0]
+
+    # Create choropleth layer
+    choropleth_layer = generate_choropleth_layer(df, color_column)
+
+    # Create Deck.GL map
+    map_ = pdk.Deck(
+        layers=[choropleth_layer],
+        initial_view_state=pdk.ViewState(
+            latitude=center[0],
+            longitude=center[1],
+            zoom=1,
+            pitch=0
+        )
+    )
+
+    return map_
+
+# Streamlit app
+st.title('Map Visualization')
+
+# Sidebar for user input
+color_column = st.sidebar.selectbox('Select the column containing values:', options=df_eu_livestock_country.columns)
+
+# Display sample DataFrame
+st.write(df_eu_livestock_country)
+
+# Plot the map
+map_ = generate_map(df_eu_livestock_country, color_column)
+st.pydeck_chart(map_)
