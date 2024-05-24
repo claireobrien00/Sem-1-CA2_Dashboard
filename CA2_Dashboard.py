@@ -30,29 +30,17 @@ fig = px.choropleth(df,
                     range_color=(0, 70000)
                    )
 
-# Update layout
 fig.update_geos(
-    # Set the scope to 'europe' and 'turkey'
-    scope='europe',
-    visible=True  # Hide all other countries initially
-)
-
-# Manually add Turkey to the map
-fig.add_trace(
-    go.Choropleth(
-        locationmode='ISO-3',
-        locations=["TUR"],  # Turkey's ISO-3 code
-        z=[df[df["Alpha-3 code"] == "TUR"]["Total Livestock"].values[0]],  # Total Livestock value for Turkey
-        colorscale="Plasma",
-        colorbar=dict(title="Total Livestock"),
-        visible=True  # Show Turkey
-    )
+    # Set the scope to 'europe'
+    scope='world',
+    # Adjust the center and zoom to focus on Europe
+    center=dict(lat=52, lon=10),
+    projection_scale=4
 )
 
 fig.update_layout(
-    title_text="Total Livestock in European Countries and Turkey"
+    title_text="Total Livestock in European Countries"
 )
-
 # Display the figure in Streamlit
 st.plotly_chart(fig)
 
