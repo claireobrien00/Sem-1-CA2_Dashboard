@@ -79,8 +79,8 @@ st.title('Food Price Indicator Calculator')
 st.sidebar.header('Enter in order: meat, dairy, cereals, oils, date')
 
 variables = []
-# for i in range(5):
-#     variables.append(st.sidebar.number_input(f'Variable {i+1}', value=0.0))
+for i in range(5):
+    variables.append(st.sidebar.number_input(f'Variable {i+1}', value=0.0))
 
 # Read coefficients from a DataFrame
 coefficients_df = pd.read_csv('CA2_Dashboard_LinMod.csv')  
