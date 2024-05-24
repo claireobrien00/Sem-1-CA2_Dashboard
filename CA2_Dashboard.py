@@ -123,4 +123,4 @@ output_unscaled = minmax_scale.inverse_transform(output_reshaped2)
 
 # Display the output
 st.write('### Output:')
-st.write(f'The Food Price Index is estimated to be: {output_unscaled}')
+st.write(f'The Food Price Index is estimated to be: {float(output_unscaled)}')
