@@ -82,9 +82,9 @@ variables = []
 for i in range(5):
     variables.append(st.sidebar.number_input(f'Variable {i+1}', value=0.0))
 
-variable_values = { 'meat' : variables[1], 'dairy' : variables[2], 'cereals' : variables[3], 'oils' : variables[4], 'date' : variables[5]
+variable_values = { 'meat' : variables[0], 'dairy' : variables[1], 'cereals' : variables[2], 'oils' : variables[3], 'date' : variables[4]
 }
-print(variable_values[5])
+print(variable_values[4])
 
 # Read coefficients from a DataFrame
 coefficients_df = pd.read_csv('CA2_Dashboard_LinMod.csv')  
