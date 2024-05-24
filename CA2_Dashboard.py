@@ -3,6 +3,7 @@ import pandas as pd
 import pydeck as pdk
 import plotly.express as px
 import numpy as np
+import plotly.graph_objects as go
 
 
 # Function to load data from GitHub
@@ -32,7 +33,8 @@ fig.update_layout(
     title_text="Total Livestock in European Countries",
     geo_scope='world',
     geo=dict(projection_type="natural earth"),
- 
+    center=dict(lat=52, lon=10),  # Center around Europe
+    projection_scale=2.5
     
 )
 
