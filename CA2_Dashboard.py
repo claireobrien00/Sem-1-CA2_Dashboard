@@ -26,7 +26,7 @@ fig = px.choropleth(df,
                     projection='natural earth',
                     geo_scope='europe',
                     lonaxis=dict(range=[-10, 45]),  # Longitude range to include Turkey
-                    lataxis=dict(range=[35, 70])    # Latitude range to include Turkey
+                    lataxis=dict(range=[35, 70]),    # Latitude range to include Turkey
                     range_color=(0, 70000)
                    )
 
