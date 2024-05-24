@@ -97,7 +97,7 @@ minmax_scale = MinMaxScaler() # ['Oils', 'Food Price Index']
 
 variables_array = np.array(list(variable_values.values()))
 
-variables_reshaped = variables_array.reshape(1, -1)
+variables_reshaped = variables_array.reshape(-1, 1)
 
 variables_scaled = scaler.fit(variables_reshaped)
 
