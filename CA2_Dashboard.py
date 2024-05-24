@@ -33,7 +33,7 @@ fig = px.choropleth(df,
 # Update layout
 fig.update_layout(
     title_text="Total Livestock in European Countries",
-    geo_scope='world',
+    geo_scope='europe',
     geo=dict(projection_type="natural earth"),
 
     
