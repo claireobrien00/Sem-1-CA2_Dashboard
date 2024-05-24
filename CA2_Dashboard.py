@@ -29,13 +29,13 @@ fig = px.choropleth(df,
                    )
 
 # Update layout
-fig.update_geos(
+fig.update_layout(
     title_text="Total Livestock in European Countries",
     geo_scope='world',
-    geo=dict(projection_type="natural earth"),
-    center=dict(lat=52, lon=10),  # Center around Europe
-    projection_scale=2.5
-    
+    geo=dict(projection_type="natural earth", 
+             center=dict(lat=52, lon=10), 
+             projection_scale=2.5)
+   
 )
 
 # Display the figure in Streamlit
