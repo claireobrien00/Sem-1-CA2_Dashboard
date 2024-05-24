@@ -99,7 +99,7 @@ variables_array = np.array(list(variable_values.values()))
 
 variables_reshaped = variables_array.reshape(-1, 1)
 
-variables_scaled = scaler.fit(variables_reshaped)
+variables_scaled = minmax.fit_transform(variables_reshaped)
 
 
 # Read coefficients from a DataFrame
@@ -116,10 +116,11 @@ coefficients = coefficients_df.iloc[:,1].tolist()
 final_output = calculate_output(coefficients, variable_values)
 
 output_array2 = np.array(final_output)
+
 output_reshaped2 = output_array2.reshape(1, -1)
-output_unscaled = scaler.inverse_transform(output_reshaped2)
+output_unscaled = minmax.inverse_transform(output_reshaped2)
 
 
 # Display the output
 st.write('### Output:')
-st.write(f'The output of the polynomial equation for the given variables is: {output_unscaled}')
+st.write(f'The Food Price Index is estimated to be: {output_unscaled}')
