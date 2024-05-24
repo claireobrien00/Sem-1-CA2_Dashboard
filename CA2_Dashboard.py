@@ -24,9 +24,6 @@ fig = px.choropleth(df,
                     animation_frame="Year",
                     color_continuous_scale=px.colors.sequential.Plasma,
                     projection='natural earth',
-                    geo_scope='europe',
-                    lonaxis=dict(range=[-10, 45]),  # Longitude range to include Turkey
-                    lataxis=dict(range=[35, 70]),    # Latitude range to include Turkey
                     range_color=(0, 70000)
                    )
 
@@ -34,6 +31,9 @@ fig = px.choropleth(df,
 fig.update_layout(
     title_text="Total Livestock in European Countries",
     geo_scope="world",
+    geo_scope='europe',
+    lonaxis=dict(range=[-10, 45]),  # Longitude range to include Turkey
+    lataxis=dict(range=[35, 70])
     geo=dict(projection_type="natural earth")
 )
 
