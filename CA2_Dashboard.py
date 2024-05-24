@@ -51,12 +51,8 @@ def calculate_output(coefficients_df, dictionary):
     
     # Calculate the output using the polynomial equation
      
-    
-    output_array1 = np.array(output)
-    output_reshaped1 = output_array1.reshape(-1, 1)
-    output_scaled = scaler.fit_transform(output_reshaped1)
-    
-    output_scaled = (
+   
+    output = (
         coefficients[0] * dictionary['meat'] +
         coefficients[1] * dictionary['dairy'] +
         coefficients[2] * dictionary['cereals'] +
@@ -79,11 +75,8 @@ def calculate_output(coefficients_df, dictionary):
         coefficients[19] * dictionary['date']**2 +
         coefficients[20]  # Intercept
     )
-    output_array2 = np.array(output_scaled)
-    output_reshaped2 = output_array2.reshape(-1, 1)
-    output_unscaled = scaler.inverse_transform(output_reshaped2)
-    output_unscaled
-    return output_unscaled
+    
+    return output
 
 # Streamlit app
 st.title('Food Price Indicator Calculator')
@@ -124,6 +117,10 @@ coefficients = coefficients_df.iloc[:,1].tolist()
 # Calculate the output
 final_output = calculate_output(coefficients, variable_values)
 
+output_array2 = np.array(final_output)
+output_reshaped2 = output_array2.reshape(-1, 1)
+output_unscaled = scaler.inverse_transform(output_reshaped2)
+output_unscaled
 # Display the output
 st.write('### Output:')
-st.write(f'The output of the polynomial equation for the given variables is: {final_output}')
+st.write(f'The output of the polynomial equation for the given variables is: {output_unscaled}')
