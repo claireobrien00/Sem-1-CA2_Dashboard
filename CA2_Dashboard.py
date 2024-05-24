@@ -79,8 +79,9 @@ st.sidebar.header('Enter in order: meat, dairy, cereals, oils, date')
 
 variables = []
 variable_labels = ['Meat', 'Dairy', 'Cereals', 'Oils', 'Date']
+
 for i in range(5):
-    variables.append(st.sidebar.number_input(f'Variable {variable_labels[i]}', value=0.0))
+    variables.append(st.sidebar.number_input(f'{variable_labels[i]}', value=0.0))
 
 variable_values = { 'meat' : variables[0], 'dairy' : variables[1], 'cereals' : variables[2], 'oils' : variables[3], 'date' : variables[4]
 }
