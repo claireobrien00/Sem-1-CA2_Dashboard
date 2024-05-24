@@ -47,7 +47,7 @@ def calculate_output(coefficients_df, dictionary):
     # Calculate the output using the polynomial equation
     output = (
         coefficients[0] * dictionary['meat'] +
-        coefficients[1] * dictionary['diary'] +
+        coefficients[1] * dictionary['dairy'] +
         coefficients[2] * dictionary['cereals'] +
         coefficients[3] * dictionary['oils'] +
         coefficients[4] * dictionary['date'] +
