@@ -30,7 +30,6 @@ fig = px.choropleth(df,
 # Update layout
 fig.update_layout(
     title_text="Total Livestock in European Countries",
-    geo_scope="world",
     geo_scope='europe',
     lonaxis=dict(range=[-10, 45]),  # Longitude range to include Turkey
     lataxis=dict(range=[35, 70]),
