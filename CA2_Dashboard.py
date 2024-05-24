@@ -94,7 +94,7 @@ st.sidebar.write(coefficients_df)
 
 # Extract coefficients from the DataFrame
 coefficients = coefficients_df.iloc[:,1].tolist()
-st.sidebar.write(coefficients)
+
 
 # Calculate the output
 output = calculate_output(coefficients, variable_values)
