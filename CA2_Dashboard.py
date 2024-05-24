@@ -82,7 +82,7 @@ variables = []
 for i in range(5):
     variables.append(st.sidebar.number_input(f'Variable {i+1}', value=0.0))
 
-variable_values = { 'meat' : variable[1], 'dairy' : variable[2], 'cereals' : variable[3], 'oils' : variable[4], 'date' : variable[5]
+variable_values = { 'meat' : variables[1], 'dairy' : variables[2], 'cereals' : variables[3], 'oils' : variables[4], 'date' : variables[5]
 }
 print(variable_values[5])
 
