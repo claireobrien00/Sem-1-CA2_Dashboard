@@ -99,7 +99,7 @@ variables_array = np.array(list(variable_values.values()))
 
 variables_reshaped = variables_array.reshape(-1, 1)
 
-variables_scaled = minmax.fit_transform(variables_reshaped)
+variables_scaled = minmax_scale.fit_transform(variables_reshaped)
 
 
 # Read coefficients from a DataFrame
@@ -118,7 +118,7 @@ final_output = calculate_output(coefficients, variable_values)
 output_array2 = np.array(final_output)
 
 output_reshaped2 = output_array2.reshape(1, -1)
-output_unscaled = minmax.inverse_transform(output_reshaped2)
+output_unscaled = minmax_scale.inverse_transform(output_reshaped2)
 
 
 # Display the output
