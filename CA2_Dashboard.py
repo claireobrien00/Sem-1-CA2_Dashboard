@@ -50,7 +50,13 @@ def calculate_output(coefficients_df, dictionary):
     # Convert the coefficients and variables to numpy arrays
     
     # Calculate the output using the polynomial equation
-    output = (
+     
+    
+    output_array1 = np.array(output)
+    output_reshaped1 = output_array1.reshape(-1, 1)
+    output_scaled = scaler.fit_transform(output_reshaped1)
+    
+    output_scaled = (
         coefficients[0] * dictionary['meat'] +
         coefficients[1] * dictionary['dairy'] +
         coefficients[2] * dictionary['cereals'] +
@@ -73,9 +79,10 @@ def calculate_output(coefficients_df, dictionary):
         coefficients[19] * dictionary['date']**2 +
         coefficients[20]  # Intercept
     )
-    output_array = np.array(output)
-    output_reshaped = output_array.reshape(1, -1)
-    output_unscaled = minmax_scale.inverse_transform(output_reshaped)
+    output_array2 = np.array(output_scaled)
+    output_reshaped2 = output_array2.reshape(-1, 1)
+    output_unscaled = scaler.inverse_transform(output_reshaped2)
+    output_unscaled
     return output_unscaled
 
 # Streamlit app
