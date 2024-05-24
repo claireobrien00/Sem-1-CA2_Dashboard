@@ -73,7 +73,8 @@ def calculate_output(coefficients_df, dictionary):
         coefficients[19] * dictionary['date']**2 +
         coefficients[20]  # Intercept
     )
-    output_unscaled = minmax_scale.inverse_transform(output)
+    output_reshaped = output.reshape(-1, 1)
+    output_unscaled = minmax_scale.inverse_transform(output_reshaped)
     return output_unscaled
 
 # Streamlit app
