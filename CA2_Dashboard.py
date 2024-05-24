@@ -4,8 +4,8 @@ import pydeck as pdk
 import plotly.express as px
 import numpy as np
 import plotly.graph_objects as go
-from scikit_learn.preprocessing import StandardScaler
-from scikit_learn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 
 # Function to load data from GitHub
 @st.cache
