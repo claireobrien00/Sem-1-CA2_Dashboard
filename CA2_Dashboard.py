@@ -47,26 +47,26 @@ def calculate_output(coefficients_df, dictionary):
     
     # Calculate the output using the polynomial equation
     output = (
-        coefficients[0] * meat +
-        coefficients[1] * dairy +
-        coefficients[2] * cereals +
-        coefficients[3] * oils +
-        coefficients[4] * date +
-        coefficients[5] * meat**2 +
-        coefficients[6] * meat * dairy +
-        coefficients[7] * meat * cereals +
-        coefficients[8] * meat * oils +
-        coefficients[9] * meat * date +
-        coefficients[10] * dairy**2 +
-        coefficients[11] * dairy * cereals +
-        coefficients[12] * dairy * oils +
-        coefficients[13] * dairy * date +
-        coefficients[14] * cereals**2 +
-        coefficients[15] * cereals * oils +
-        coefficients[16] * cereals * date +
-        coefficients[17] * oils**2 +
-        coefficients[18] * oils * date +
-        coefficients[19] * date**2 +
+        coefficients[0] * dictionary['meat'] +
+        coefficients[1] * dictionary['diary'] +
+        coefficients[2] * dictionary['cereals'] +
+        coefficients[3] * dictionary['oils'] +
+        coefficients[4] * dictionary['date'] +
+        coefficients[5] * dictionary['meat']**2 +
+        coefficients[6] * dictionary['meat'] * dictionary['dairy'] +
+        coefficients[7] * dictionary['meat'] * dictionary['cereals'] +
+        coefficients[8] * dictionary['meat'] * dictionary['oils'] +
+        coefficients[9] * dictionary['meat'] * dictionary['date'] +
+        coefficients[10] * dictionary['dairy']**2 +
+        coefficients[11] * dictionary['dairy'] * dictionary['cereals'] +
+        coefficients[12] * dictionary['dairy'] * dictionary['oils'] +
+        coefficients[13] * dictionary['dairy'] * dictionary['date'] +
+        coefficients[14] * dictionary['cereals']**2 +
+        coefficients[15] * dictionary['cereals'] * dictionary['oils'] +
+        coefficients[16] * dictionary['cereals'] * dictionary['date'] +
+        coefficients[17] * dictionary['oils']**2 +
+        coefficients[18] * dictionary['oils'] * dictionary['date'] +
+        coefficients[19] * dictionary['date']**2 +
         coefficients[20]  # Intercept
     )
     
