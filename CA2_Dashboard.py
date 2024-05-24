@@ -96,7 +96,8 @@ variable_values = { 'meat' : variables[0], 'dairy' : variables[1], 'cereals' : v
 scaler = StandardScaler() #['Meat', 'Dairy','Cereals', 'Date']
 minmax_scale = MinMaxScaler() # ['Oils', 'Food Price Index']
 
-variables_array = np.array(variable_values.values())
+variables_array = np.array(list(variable_values.values()))
+
 variables_reshaped = variables_array.reshape(1, -1)
 
 variables_scaled = scaler.fit_transform(variables_reshaped)
