@@ -78,8 +78,9 @@ st.title('Food Price Indicator Calculator')
 st.sidebar.header('Enter in order: meat, dairy, cereals, oils, date')
 
 variables = []
+variable_labels = ['Meat', 'Dairy', 'Cereals', 'Oils', 'Date']
 for i in range(5):
-    variables.append(st.sidebar.number_input(f'Variable {i+1}', value=0.0))
+    variables.append(st.sidebar.number_input(f'Variable {variable_labels[i+1]}', value=0.0))
 
 variable_values = { 'meat' : variables[0], 'dairy' : variables[1], 'cereals' : variables[2], 'oils' : variables[3], 'date' : variables[4]
 }
