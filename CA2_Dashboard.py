@@ -4,7 +4,8 @@ import pydeck as pdk
 import plotly.express as px
 import numpy as np
 import plotly.graph_objects as go
-
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 
 # Function to load data from GitHub
 @st.cache
@@ -71,8 +72,8 @@ def calculate_output(coefficients_df, dictionary):
         coefficients[19] * dictionary['date']**2 +
         coefficients[20]  # Intercept
     )
-    
-    return output
+    output_unscaled = minmax_scale.inverse_transform(output)
+    return output_unscaled
 
 # Streamlit app
 st.title('Food Price Indicator Calculator')
@@ -88,7 +89,15 @@ for i in range(5):
 
 variable_values = { 'meat' : variables[0], 'dairy' : variables[1], 'cereals' : variables[2], 'oils' : variables[3], 'date' : variables[4]
 }
-print(variable_values)
+
+scaler = StandardScaler() #['Meat', 'Dairy','Cereals', 'Date']
+minmax_scale = MinMaxScaler() # ['Oils', 'Food Price Index']
+
+variables_array = np.array(variables)
+variables_reshaped = variables_array.reshape(-1, 1)
+
+variables_scaled = scaler.fit_transform(variables_reshaped)
+
 
 # Read coefficients from a DataFrame
 coefficients_df = pd.read_csv('CA2_Dashboard_LinMod.csv')  
@@ -102,8 +111,8 @@ coefficients = coefficients_df.iloc[:,1].tolist()
 
 
 # Calculate the output
-output = calculate_output(coefficients, variable_values)
+final_output = calculate_output(coefficients, variable_values)
 
 # Display the output
 st.write('### Output:')
-st.write(f'The output of the polynomial equation for the given variables is: {output}')
+st.write(f'The output of the polynomial equation for the given variables is: {final_output}')
