@@ -34,7 +34,7 @@ fig = px.choropleth(df,
 fig.update_geos(
     # Set the scope to 'europe' and 'turkey'
     scope='europe',
-    visible=False  # Hide all other countries initially
+    visible=True  # Hide all other countries initially
 )
 
 # Manually add Turkey to the map
