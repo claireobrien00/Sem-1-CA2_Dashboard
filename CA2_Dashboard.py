@@ -34,7 +34,7 @@ fig.update_layout(
     showframe=False,
     showcoastlines=False,
     center=dict(lat=50, lon=20),  # Center around Europe including Turkey
-    fitbounds="locations" 
+    fitbounds="locations",
     geo=dict(projection_type="natural earth")
     
 )
