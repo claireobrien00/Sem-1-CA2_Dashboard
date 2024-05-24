@@ -98,7 +98,7 @@ coefficients = coefficients_df.iloc[:,1].tolist()
 
 print(coefficients)
 # Calculate the output
-output = calculate_output(coefficients, variables_values)
+output = calculate_output(coefficients, variable_values)
 
 # Display the output
 st.write('### Output:')
