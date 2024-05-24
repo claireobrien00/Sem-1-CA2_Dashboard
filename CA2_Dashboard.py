@@ -113,7 +113,7 @@ st.sidebar.write(coefficients_df)
 coefficients = coefficients_df.iloc[:,1].tolist()
 
 # Calculate the output
-final_output = calculate_output(coefficients, variables_scaled)
+final_output = calculate_output(coefficients, variables_scaled.values())
 
 output_array2 = np.array(final_output)
 
