@@ -117,7 +117,7 @@ coefficients = coefficients_df.iloc[:,1].tolist()
 final_output = calculate_output(coefficients, variable_values)
 
 output_array2 = np.array(final_output)
-output_reshaped2 = output_array2.reshape(-1, 1)
+output_reshaped2 = output_array2.reshape(1, -1)
 output_unscaled = scaler.inverse_transform(output_reshaped2)
 
 
