@@ -31,7 +31,6 @@ fig = px.choropleth(df,
 fig.update_layout(
     title_text="Total Livestock in European Countries",
     geo_scope='europe',
-    showframe=False,
     showcoastlines=False,
     center=dict(lat=50, lon=20),  # Center around Europe including Turkey
     fitbounds="locations",
