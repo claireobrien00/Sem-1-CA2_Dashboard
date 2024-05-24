@@ -4,6 +4,7 @@ import pydeck as pdk
 import plotly.express as px
 import numpy as np
 import plotly.graph_objects as go
+from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 
