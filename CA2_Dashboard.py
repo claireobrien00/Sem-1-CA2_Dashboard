@@ -51,7 +51,6 @@ def calculate_output(coefficients_df, dictionary):
     
     # Calculate the output using the polynomial equation
      
-   
     output = (
         coefficients[0] * dictionary['meat'] +
         coefficients[1] * dictionary['dairy'] +
@@ -100,7 +99,7 @@ variables_array = np.array(list(variable_values.values()))
 
 variables_reshaped = variables_array.reshape(1, -1)
 
-variables_scaled = scaler.fit_transform(variables_reshaped)
+variables_scaled = scaler.fit(variables_reshaped)
 
 
 # Read coefficients from a DataFrame
