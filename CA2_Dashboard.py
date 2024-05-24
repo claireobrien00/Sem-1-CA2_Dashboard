@@ -43,7 +43,6 @@ st.plotly_chart(fig)
 # Function to calculate the output of the polynomial equation
 def calculate_output(coefficients_df, dictionary):
     # Convert the coefficients and variables to numpy arrays
-    coefficients = np.array(coefficients)
     
     # Calculate the output using the polynomial equation
     output = (
